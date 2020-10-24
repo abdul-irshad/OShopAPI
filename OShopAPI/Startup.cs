@@ -40,6 +40,12 @@ namespace OShopAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+            app.UseHttpsRedirection();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
