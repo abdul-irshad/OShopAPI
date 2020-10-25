@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OShopAPI.Dtos;
 using OShopAPI.Repository;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace OShopAPI.Controllers
