@@ -1,11 +1,18 @@
-﻿using OShopAPI.Models;
+﻿using OShopAPI.Dtos;
+using OShopAPI.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OShopAPI.Repository
 {
-    public  interface ICategoryRepo
+    public interface ICategoryRepo
     {
-        IEnumerable<Category> GetAllCategory();
+        Task<ServiceResponse<IEnumerable<CategoryDTO>>> GetAllCategory();
 
+        Task<ServiceResponse<IEnumerable<CategoryDTO>>> CreateCategory(CategoryDTO category);
+
+        Task<ServiceResponse<CategoryDTO>> UpdateCategory(CategoryDTO category);
+
+        Task<ServiceResponse<IEnumerable<CategoryDTO>>> DeleteCategory(int id);
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -11,20 +12,25 @@ namespace OShopAPI
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("OShopConnection")));
-            services.AddControllers();
-            services.AddScoped<ICategoryRepo, ImplementsCategory>();
+            services.AddDbContext<ApplicationDbContext>(opt =>
+            opt.UseSqlServer(Configuration.GetConnectionString("OShopConnection")));
 
+            services.AddControllers();
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<ICategoryRepo, ImplementsCategory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,11 +41,7 @@ namespace OShopAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
-            app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); app.UseHttpsRedirection();
 
             app.UseRouting();
 
