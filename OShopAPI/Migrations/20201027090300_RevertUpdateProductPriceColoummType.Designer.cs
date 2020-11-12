@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OShopAPI.Models;
 
 namespace OShopAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201027090300_RevertUpdateProductPriceColoummType")]
+    partial class RevertUpdateProductPriceColoummType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,22 +45,12 @@ namespace OShopAPI.Migrations
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Mobile"
+                            CategoryName = "Food"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CategoryName = "Appliances"
-                        },
-                        new
-                        {
-                            CategoryId = 4,
-                            CategoryName = "Fashion"
-                        },
-                        new
-                        {
-                            CategoryId = 5,
-                            CategoryName = "Grocery"
+                            CategoryName = "Cloths"
                         });
                 });
 
@@ -69,8 +61,9 @@ namespace OShopAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageURL")
                         .IsRequired()

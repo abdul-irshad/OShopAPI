@@ -9,8 +9,8 @@ using OShopAPI.Models;
 namespace OShopAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201024084610_SeedCategory")]
-    partial class SeedCategory
+    [Migration("20201026162411_AddedImageURLColummToProduct")]
+    partial class AddedImageURLColummToProduct
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,33 @@ namespace OShopAPI.Migrations
                             CategoryId = 3,
                             CategoryName = "Cloths"
                         });
+                });
+
+            modelBuilder.Entity("OShopAPI.Models.Product", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }

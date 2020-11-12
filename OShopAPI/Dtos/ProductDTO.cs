@@ -12,10 +12,12 @@ namespace OShopAPI.Dtos
         public string ProductTitle { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d+\.\d{0,2}$")]
         public decimal Price { get; set; }
 
         [Required]
         public int CategoryID { get; set; }
+
+        [Required]
+        public string ImageURL { get; set; }
     }
 }

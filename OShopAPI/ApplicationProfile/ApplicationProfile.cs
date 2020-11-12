@@ -10,6 +10,9 @@ namespace OShopAPI.ApplicationProfile
         {
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, Category>();
+
+            CreateMap<Product, ProductDTO>();
+            CreateMap<ProductDTO, Product>();
         }
     }
 }

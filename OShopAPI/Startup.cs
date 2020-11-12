@@ -26,11 +26,12 @@ namespace OShopAPI
             services.AddDbContext<ApplicationDbContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("OShopConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<ICategoryRepo, ImplementsCategory>();
+            services.AddScoped<IProductRepo, ImplementsProduct>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
